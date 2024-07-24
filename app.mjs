@@ -10,12 +10,25 @@ const playerName = prompt("Enter your name: ");
 
 console.log(`Welcome to the game ${playerName}!`);
 
+console.log("\nRules of the Game: ");
+
+console.log("-> \"R\" stands for \"Rock\"");
+
+console.log("-> \"P\" stands for \"Paper\"");
+
+console.log("-> \"S\" stands for \"Scissors\"");
+
+console.log("-> Type R, P, or S to enter your choice");
+
+console.log("-> Best of three turns will win the game.");
+
+console.log("Enjoy!");
 
 let playerScore = 0;
 
 let computerScore = 0;
 
-console.log(`\n${playerName}: ${playerScore} || Computer: ${computerScore}\n`);
+console.log(`\nScore:\n${playerName}: ${playerScore} || Computer: ${computerScore}\n`);
 
 const computerChoiceArray = [ "R", "P", "S" ];
 
