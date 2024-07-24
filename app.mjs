@@ -2,33 +2,35 @@
 
 import promptSync from "prompt-sync";
 
+import chalk from "chalk";
+
 const prompt = promptSync({sigint: true});
 
-console.log("\nAre you ready to play rock paper scissors?\n");
+console.log(chalk.magentaBright("\nAre you ready to play rock paper scissors?\n"));
 
-const playerName = prompt("Enter your name: ");
+const playerName = prompt(chalk.blueBright("Enter your name: "));
 
-console.log(`Welcome to the game ${playerName}!`);
+console.log(chalk.greenBright(`Welcome to the game ${playerName}!`));
 
-console.log("\nRules of the Game: ");
+console.log(chalk.bold.yellow("\nRules of the Game: "));
 
-console.log("-> \"R\" stands for \"Rock\"");
+console.log(chalk.yellow("-> \"R\" stands for \"Rock\""));
 
-console.log("-> \"P\" stands for \"Paper\"");
+console.log(chalk.yellow("-> \"P\" stands for \"Paper\""));
 
-console.log("-> \"S\" stands for \"Scissors\"");
+console.log(chalk.yellow("-> \"S\" stands for \"Scissors\""));
 
-console.log("-> Type R, P, or S to enter your choice");
+console.log(chalk.yellow("-> Type R, P, or S to enter your choice"));
 
-console.log("-> Best of three turns will win the game.");
+console.log(chalk.yellow("-> Best of three turns will win the game."));
 
-console.log("Enjoy!");
+console.log(chalk.bold.magentaBright("Enjoy!"));
 
 let playerScore = 0;
 
 let computerScore = 0;
 
-console.log(`\nScore:\n${playerName}: ${playerScore} || Computer: ${computerScore}\n`);
+console.log(chalk.cyanBright(`\nScore:\n${playerName}: ${playerScore} || Computer: ${computerScore}\n`));
 
 const computerChoiceArray = [ "R", "P", "S" ];
 
@@ -38,11 +40,11 @@ for(let i = 0; i < 3; i++) {
     playTurn();
 }
 
-console.log(`Final Score: \n${playerName}: ${playerScore} || Computer: ${computerScore}`);
+console.log(chalk.bold.greenBright(`Final Score: \n${playerName}: ${playerScore} || Computer: ${computerScore}`));
 
 const result = playerScore === computerScore ? "The Game is a Draw" : playerScore > computerScore ? `Congratulations ${playerName}! You have the game` : `Sorry ${playerName}, Computer have won the game. Better luck next time!`;
 
-console.log(result); 
+console.log(chalk.magentaBright(result)); 
 
 // Function to Play a turn of the game
 
@@ -77,7 +79,7 @@ function playTurn() {
     
         default : 
     
-            console.log("Please enter a valid choice");
+            console.log(chalk.bgRed("Please enter a valid choice"));
             
             return;
 
@@ -85,22 +87,22 @@ function playTurn() {
 
     if (winner === "Draw") {
 
-        console.log("Its a Draw!");
+        console.log(chalk.yellow("Its a Draw!"));
     
     } else if (winner === "Computer") {
     
         computerScore++;
     
-        console.log("Computer wins!");
+        console.log(chalk.red("Computer wins!"));
     
     } else {
         
         playerScore++;
     
-        console.log(`${playerName} wins!`);
+        console.log(chalk.green(`${playerName} wins!`));
         
     }
 
-    console.log(`${playerName}: ${playerScore} || Computer: ${computerScore}\n`);
+    console.log(chalk.cyanBright(`${playerName}: ${playerScore} || Computer: ${computerScore}\n`));
 
 }
