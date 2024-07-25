@@ -38,15 +38,9 @@ const computerChoiceArray = [ "Rock", "Paper", "Scissors" ];
 
 let winner = "Draw";
 
-while ( !(playerScore === 3 || computerScore === 3) ) playTurn();
+playGame();
 
-console.log(chalk.bold.greenBright(`Final Score: \n${playerName}: ${playerScore} || Computer: ${computerScore}`));
-
-const result = playerScore === computerScore ? "The Game is a Draw" : playerScore > computerScore ? `Congratulations ${playerName}! You have the game` : `Sorry ${playerName}, Computer have won the game. Better luck next time!`;
-
-console.log(chalk.magentaBright(result)); 
-
-// Function to Play a turn of the game
+// Functions to Play the game
 
 function playTurn() {
 
@@ -112,3 +106,34 @@ function playTurn() {
     console.log(chalk.cyanBright(`${playerName}: ${playerScore} || Computer: ${computerScore}\n`));
 
 };
+
+function playGame() {
+
+    while ( !(playerScore === 3 || computerScore === 3) ) playTurn();
+
+    console.log(chalk.bold.greenBright(`Final Score: \n${playerName}: ${playerScore} || Computer: ${computerScore}`));
+
+    const result = playerScore === computerScore ? "The Game is a Draw" : playerScore > computerScore ? `Congratulations ${playerName}! You have the game` : `Sorry ${playerName}, Computer have won the game. Better luck next time!`;
+
+    console.log(chalk.magentaBright(result)); 
+
+    console.log(chalk.yellow("\nEnter \"Y\" to play again or any other key to quit the game."));
+
+    const again = prompt(chalk.bold.cyanBright("Play Again? ")).trim().toUpperCase();
+
+    if(again === "Y") playAgain();
+
+};
+
+function playAgain() {
+
+    playerScore = 0;
+
+    computerScore = 0;
+
+    console.log(chalk.cyanBright(`\nScore:\n${playerName}: ${playerScore} || Computer: ${computerScore}\n`));
+
+    playGame();
+
+};
+
