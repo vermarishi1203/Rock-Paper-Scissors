@@ -14,17 +14,19 @@ console.log(chalk.greenBright(`Welcome to the game ${playerName}!`));
 
 console.log(chalk.bold.yellow("\nRules of the Game: "));
 
+console.log(chalk.yellow("-> Type R, P, or S to enter your choice"));
+
 console.log(chalk.yellow("-> \"R\" stands for \"Rock\""));
 
 console.log(chalk.yellow("-> \"P\" stands for \"Paper\""));
 
 console.log(chalk.yellow("-> \"S\" stands for \"Scissors\""));
 
-console.log(chalk.yellow("-> Type R, P, or S to enter your choice"));
+console.log(chalk.yellow("-> Rock beats Scissors, Scissors beats Paper, and Paper beats Rock"));
 
-console.log(chalk.yellow("-> Best of three turns will win the game."));
+console.log(chalk.yellow("-> Whoever scores 3 points first, will win the game!"));
 
-console.log(chalk.bold.magentaBright("Enjoy!"));
+console.log(chalk.bold.magentaBright("\nEnjoy!"));
 
 let playerScore = 0;
 
@@ -32,13 +34,11 @@ let computerScore = 0;
 
 console.log(chalk.cyanBright(`\nScore:\n${playerName}: ${playerScore} || Computer: ${computerScore}\n`));
 
-const computerChoiceArray = [ "R", "P", "S" ];
+const computerChoiceArray = [ "Rock", "Paper", "Scissors" ];
 
 let winner = "Draw";
 
-for(let i = 0; i < 3; i++) {
-    playTurn();
-}
+while ( !(playerScore === 3 || computerScore === 3) ) playTurn();
 
 console.log(chalk.bold.greenBright(`Final Score: \n${playerName}: ${playerScore} || Computer: ${computerScore}`));
 
@@ -50,30 +50,34 @@ console.log(chalk.magentaBright(result));
 
 function playTurn() {
 
-    const playerChoice = prompt("Enter your choice: ").trim().toUpperCase();
+    let playerChoice = prompt("Enter your choice: ").trim().toUpperCase();
 
-    const computerChoice = computerChoiceArray[Math.floor(Math.random() * 3)];
-
-    console.log(`You have chosen ${playerChoice} , The computer have chosen ${computerChoice}`);
+    const computerChoice = computerChoiceArray[Math.floor(Math.random() * computerChoiceArray.length)];
 
     switch (playerChoice) {
 
         case "R" :
             
-            winner = computerChoice === "R" ? "Draw" : computerChoice === "P" ? "Computer" : "Player" ;
+            playerChoice = "Rock";
+
+            winner = computerChoice === "Rock" ? "Draw" : computerChoice === "Paper" ? "Computer" : "Player" ;
             
             break;
         
         case "P" :
     
-            winner = computerChoice === "P" ? "Draw" : computerChoice === "S" ? "Computer" : "Player" ;
+            playerChoice = "Paper";
+
+            winner = computerChoice === "Paper" ? "Draw" : computerChoice === "Scissors" ? "Computer" : "Player" ;
     
             break;
         
         
         case "S" :
     
-            winner = computerChoice === "S" ? "Draw" : computerChoice === "R" ? "Computer" : "Player" ;
+            playerChoice = "Scissors";
+
+            winner = computerChoice === "Scissors" ? "Draw" : computerChoice === "Rock" ? "Computer" : "Player" ;
     
             break;
     
@@ -84,6 +88,8 @@ function playTurn() {
             return;
 
     }
+
+    console.log(`You have chosen ${playerChoice} , The computer have chosen ${computerChoice}`);
 
     if (winner === "Draw") {
 
@@ -105,4 +111,4 @@ function playTurn() {
 
     console.log(chalk.cyanBright(`${playerName}: ${playerScore} || Computer: ${computerScore}\n`));
 
-}
+};
